@@ -4,3 +4,4 @@ pip 22.3.1
 pillow
 requests
 crispy_forms
+virtualenv
