@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@*t5jywaxin@o7$vj#yu!s3w7)_xcjiz(8-hdittd1v*s84cm0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db_postgres',
+        'PORT': 5432
     }
 }
 
@@ -120,19 +123,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/code/static'
+
 STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
 
 MEDIA_URL='/media/'
 
 MEDIA_ROOT= os.path.join(BASE_DIR,'media'),
-
-# configuración de email
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'fedeta86@gmail.com'
-DEFAULT_FROM_EMAIL = 'fedeta86@gmail.com'
-SERVER_EMAIL = 'fedeta86@gmail.com'
-EMAIL_HOST_PASSWORD = '#porter1986'
