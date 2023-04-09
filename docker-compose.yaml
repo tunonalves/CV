@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db_postgres:
+    image: postgres:11.5
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+  
+  django_app: 
+    build: .
+    volumes:
+      - static:/code/static
+      - .:/code
+    depends_on:
+      - db_postgres
+
+  nginx:
+    image: nginx:1.3
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static:/code/static
+
+volumes:
+  .:
+  postgres_data:
+  static:
